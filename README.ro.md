@@ -70,14 +70,14 @@ Sus în fiecare fișier scrie ce trebuie făcut acolo și ce ecran din Figma cop
 ```
 git config --global user.name "Prenume Nume"
 git config --global user.email "emailul@vostru.com"
-git clone https://github.com/USERNAME/EcoEnergie-CEITI.git
-cd EcoEnergie-CEITI
+git clone https://github.com/Nicoleta-git/EcoEnergy.git
+cd EcoEnergy
 git checkout -b numele-vostru
 ```
 
 Ultima linie vă face branch-ul vostru, de exemplu `git checkout -b sofia`. Lucrați doar pe el.
 
-4. În IntelliJ: File → Open → folderul `EcoEnergie-CEITI` → Open as Project. Așteptați să se descarce bibliotecile.
+4. În IntelliJ: File → Open → folderul `EcoEnergy` → Open as Project. Așteptați să se descarce bibliotecile.
 5. Porniți `Launcher.java`. Se deschide direct meniul, ca să vă puteți testa pagina fără logare.
 
 ### De fiecare dată

@@ -68,14 +68,14 @@ At the top of every file it says what to do there and which Figma screen to copy
 ```
 git config --global user.name "First Last"
 git config --global user.email "your@email.com"
-git clone https://github.com/USERNAME/EcoEnergie-CEITI.git
-cd EcoEnergie-CEITI
+git clone https://github.com/Nicoleta-git/EcoEnergy.git
+cd EcoEnergy
 git checkout -b your-name
 ```
 
 The last line creates your own branch, for example `git checkout -b sofia`. Work only on it.
 
-4. In IntelliJ: File → Open → the `EcoEnergie-CEITI` folder → Open as Project. Wait for the libraries to download.
+4. In IntelliJ: File → Open → the `EcoEnergy` folder → Open as Project. Wait for the libraries to download.
 5. Run `Launcher.java`. The menu opens directly, so you can test your page without logging in.
 
 ### Every time

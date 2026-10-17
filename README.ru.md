@@ -70,14 +70,14 @@
 ```
 git config --global user.name "Имя Фамилия"
 git config --global user.email "ваш@email.com"
-git clone https://github.com/USERNAME/EcoEnergie-CEITI.git
-cd EcoEnergie-CEITI
+git clone https://github.com/Nicoleta-git/EcoEnergy.git
+cd EcoEnergy
 git checkout -b ваше-имя
 ```
 
 Последняя строка создаёт вашу ветку, например `git checkout -b sofia`. Работайте только в ней.
 
-4. В IntelliJ: File → Open → папка `EcoEnergie-CEITI` → Open as Project. Подождите, пока скачаются библиотеки.
+4. В IntelliJ: File → Open → папка `EcoEnergy` → Open as Project. Подождите, пока скачаются библиотеки.
 5. Запустите `Launcher.java`. Сразу откроется меню, чтобы можно было проверить свою страницу без входа.
 
 ### Каждый раз
