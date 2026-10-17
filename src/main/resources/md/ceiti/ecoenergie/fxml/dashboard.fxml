@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Screen 02 - Panou principal. DONE (Nicoleta), except the 3D building.
+  Figma: page "Macheta", screen "Panou principal" (also on page "Wireframe")
+
+  Look at this file when you make your page: same ScrollPane + VBox "ecran",
+  title on top, then cards with styleClass "panou".
+-->
+
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="md.ceiti.ecoenergie.ui.DashboardController"
+            fitToWidth="true" styleClass="scroll-ecran, edge-to-edge">
+    <VBox styleClass="ecran">
+        <HBox alignment="BOTTOM_LEFT">
+            <VBox>
+                <Label text="Panou principal" styleClass="titlu-ecran"/>
+                <Label fx:id="subtitlu" styleClass="text-muted"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Citire nouă" styleClass="accent" onAction="#citireNoua">
+                <graphic><FontIcon iconLiteral="fth-plus"/></graphic>
+            </Button>
+        </HBox>
+
+        <HBox spacing="14">
+            <VBox styleClass="panou" HBox.hgrow="ALWAYS">
+                <Label text="CONSUM AZI" styleClass="kpi-eticheta"/>
+                <Label fx:id="lblConsum" minWidth="-Infinity" styleClass="kpi-valoare"/>
+                <Label text="E = Σ kWh săli" styleClass="formula"/>
+            </VBox>
+            <VBox styleClass="panou" HBox.hgrow="ALWAYS">
+                <Label text="COST AZI" styleClass="kpi-eticheta"/>
+                <Label fx:id="lblCost" minWidth="-Infinity" styleClass="kpi-valoare"/>
+                <Label text="Cost = E · tarif" styleClass="formula"/>
+            </VBox>
+            <VBox styleClass="panou" HBox.hgrow="ALWAYS">
+                <Label text="SĂLI PESTE PRAG" styleClass="kpi-eticheta"/>
+                <Label fx:id="lblPestePrag" minWidth="-Infinity" styleClass="kpi-valoare"/>
+                <Label text="kWh azi &gt; prag zilnic" styleClass="formula"/>
+            </VBox>
+            <VBox styleClass="panou" HBox.hgrow="ALWAYS">
+                <Label text="CO₂ AZI" styleClass="kpi-eticheta"/>
+                <Label fx:id="lblCo2" minWidth="-Infinity" styleClass="kpi-valoare"/>
+                <Label text="CO₂ = E · 0,45 kg" styleClass="formula"/>
+            </VBox>
+        </HBox>
+
+        <HBox spacing="14">
+            <VBox styleClass="panou" HBox.hgrow="ALWAYS" minWidth="420">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label text="Consum pe săli azi" styleClass="title-4"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="click pentru detalii" styleClass="text-muted, text-small"/>
+                </HBox>
+                <VBox fx:id="listaSali" spacing="12"/>
+            </VBox>
+            <VBox styleClass="panou" prefWidth="520" minWidth="420">
+                <Label text="Clădirea în 3D" styleClass="title-4"/>
+                <StackPane fx:id="zona3d" styleClass="zona-3d" prefHeight="360" minHeight="360">
+                    <Label text="Aici vine clădirea 3D (Cladire3D.java)" styleClass="text-muted"/>
+                </StackPane>
+                <Label text="Click pe o sală pentru detalii. Trage ca să rotești." styleClass="text-muted" wrapText="true"/>
+            </VBox>
+        </HBox>
+
+        <VBox styleClass="panou">
+            <Label text="Consumul în ultimele 14 zile (kWh)" styleClass="title-4"/>
+            <AreaChart fx:id="graficZile" legendVisible="false" animated="false" createSymbols="false" prefHeight="250">
+                <xAxis><CategoryAxis/></xAxis>
+                <yAxis><NumberAxis/></yAxis>
+            </AreaChart>
+        </VBox>
+    </VBox>
+</ScrollPane>
