@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Screen 08 - Calculatoare STEM
+  Figma: page "Macheta", screen "Calculatoare STEM" (also on page "Wireframe")
+  Assigned to: Sofia
+  The task list is at the top of CalculatoareController.java
+-->
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="md.ceiti.ecoenergie.ui.CalculatoareController"
+            fitToWidth="true" styleClass="scroll-ecran, edge-to-edge">
+    <VBox styleClass="ecran">
+        <VBox>
+            <Label text="Calculatoare STEM" styleClass="titlu-ecran"/>
+            <Label text="Schimbi un număr și rezultatul se schimbă singur." styleClass="text-muted"/>
+        </VBox>
+
+        <VBox styleClass="panou">
+            <Label text="În lucru (Sofia)" styleClass="text-muted"/>
+        </VBox>
+    </VBox>
+</ScrollPane>

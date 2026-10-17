@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Asistent AI - panel on the right, opens from the menu.
+  Figma: page "Macheta", screen "Panou principal (cu asistentul deschis)"
+  Assigned to: Nicoleta
+  The task list is at the top of ChatController.java
+-->
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="md.ceiti.ecoenergie.ui.ChatController"
+      styleClass="panou" prefWidth="370" visible="false" managed="false">
+    <Label text="Asistent AI" styleClass="title-4"/>
+    <Label text="Nu e conectat încă." styleClass="text-muted, text-small"/>
+</VBox>

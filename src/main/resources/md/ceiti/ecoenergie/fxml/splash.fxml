@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Screen 00 - Pornire (splash)
+  Figma: page "Macheta", screen "Pornire" (also on page "Wireframe")
+  Assigned to: Nicoleta
+  The task list is at the top of SplashController.java
+-->
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="md.ceiti.ecoenergie.ui.SplashController" styleClass="login-fundal">
+    <VBox alignment="CENTER" spacing="14">
+        <StackPane styleClass="logo-mare">
+            <fx:include source="logo.fxml"/>
+        </StackPane>
+        <Label text="COLEGIUL CEITI" styleClass="brand-sub"/>
+    </VBox>
+</StackPane>
