@@ -1,0 +1,213 @@
+/*
+ * Global styles for the whole app. DONE (Nicoleta).
+ * Colors and fonts are the same as in Figma, so you don't have to style anything.
+ * Just put these classes on your nodes (styleClass="..." in FXML).
+ * If you really need a new class, add it at the end, in your section.
+ *
+ * PAGE
+ *   ecran            root VBox of every page (padding + spacing)
+ *   scroll-ecran     the ScrollPane around the page
+ *   titlu-ecran      big page title
+ *   text-muted       gray text (subtitles, hints)       -> from AtlantaFX
+ *   text-small       smaller text                       -> from AtlantaFX
+ *   text-bold        bold text                          -> from AtlantaFX
+ *   title-4          title of a card                    -> from AtlantaFX
+ *
+ * CARDS
+ *   panou            card with border (most things go in one)
+ *   kpi-eticheta     small gray label on top of a number (CONSUM AZI)
+ *   kpi-valoare      big number (59,5 kWh)       + ok / depasit for green / red
+ *   formula          small formula under a number (E = n * P * t)
+ *   calcul           dark box with a calculation, more lines
+ *   eticheta         label above a form field
+ *
+ * COLORS FOR CONSUMPTION (green / yellow / red)
+ *   pill             small rounded label     + ok / atentie / depasit / info / neutru
+ *   bara-consum      ProgressBar             + ok / atentie / depasit
+ *
+ * MESSAGES
+ *   mesaj            message under a form    + eroare / succes / info
+ *
+ * BUTTONS
+ *   accent           green main button (Salveaza, Citire noua)   -> from AtlantaFX, colors changed here
+ *   danger           red button (Goleste, Sterge)                -> from AtlantaFX
+ *   flat, button-icon  button with just an icon                  -> from AtlantaFX
+ *
+ * CHARTS
+ *   LineChart / AreaChart / BarChart are already green, nothing to add.
+ *   grafic-prag      on a LineChart: the 2nd series becomes a dashed gray line (the limit)
+ */
+
+/* ---------- colors ---------- */
+.root {
+    -fx-font-family: "Poppins";
+    -color-accent-fg: #4ade80;
+    -color-accent-emphasis: #16a34a;
+    -color-accent-muted: rgba(34, 197, 94, 0.4);
+    -color-accent-subtle: rgba(34, 197, 94, 0.12);
+    -color-chart-1: #4ade80;
+    -color-chart-1-alpha70: rgba(74, 222, 128, 0.7);
+    -color-chart-1-alpha20: rgba(74, 222, 128, 0.2);
+    -color-chart-2: #a1a1aa;
+    -color-chart-2-alpha70: rgba(161, 161, 170, 0.7);
+    -color-chart-2-alpha20: rgba(161, 161, 170, 0.2);
+}
+.root.tema-neagra {
+    -color-bg-default: #0a0a0b;
+    -color-bg-subtle: #121214;
+    -color-bg-overlay: #161618;
+    -color-bg-inset: #070708;
+    -color-border-default: #232327;
+    -color-border-muted: #1b1b1e;
+    -color-fg-default: #ececee;
+    -color-fg-muted: #8b8b94;
+}
+
+/* ---------- logo ---------- */
+.logo-text { -fx-spacing: -2; }
+.logo-litere {
+    -fx-font-size: 19px;
+    -fx-font-weight: 800;
+    -fx-font-style: italic;
+    -fx-text-fill: linear-gradient(to bottom, #3f3f46, #18181b);
+}
+.tema-neagra .logo-litere, .login-fundal .logo-litere {
+    -fx-text-fill: linear-gradient(to bottom, #ffffff 35%, #a1a1aa 100%);
+}
+.logo-fulger {
+    -fx-icon-size: 28px;
+    -fx-icon-color: linear-gradient(to bottom, #bbf7d0, #22c55e 55%, #15803d);
+}
+.logo-mare .logo-text { -fx-spacing: -6; -fx-alignment: center; }
+.logo-mare .logo-litere { -fx-font-size: 42px; }
+.logo-mare .logo-fulger { -fx-icon-size: 62px; }
+.brand { -fx-padding: 0 6 22 8; }
+.brand-sub { -fx-font-size: 10.5px; -fx-font-weight: 600; -fx-text-fill: -color-fg-muted; }
+
+/* ---------- side menu ---------- */
+.sidebar {
+    -fx-background-color: -color-bg-default;
+    -fx-border-color: transparent -color-border-default transparent transparent;
+    -fx-padding: 18 12 14 12;
+    -fx-pref-width: 236;
+    -fx-min-width: 236;
+}
+.nav-item {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-border-color: transparent;
+    -fx-border-radius: 8;
+    -fx-padding: 9 10;
+    -fx-alignment: center-left;
+    -fx-text-fill: -color-fg-muted;
+    -fx-font-weight: 500;
+    -fx-max-width: infinity;
+    -fx-graphic-text-gap: 11;
+    -fx-cursor: hand;
+}
+.nav-item:hover { -fx-background-color: -color-bg-overlay; -fx-text-fill: -color-fg-default; }
+.nav-item:selected { -fx-background-color: -color-bg-overlay; -fx-border-color: -color-border-default; -fx-text-fill: -color-fg-default; }
+.nav-item .ikonli-font-icon { -fx-icon-color: -color-fg-muted; -fx-icon-size: 17px; }
+.nav-item:selected .ikonli-font-icon { -fx-icon-color: -color-accent-fg; }
+.caseta-utilizator {
+    -fx-border-color: -color-border-default transparent transparent transparent;
+    -fx-padding: 12 4 0 4;
+}
+
+/* ---------- page ---------- */
+.ecran { -fx-padding: 24; -fx-spacing: 18; -fx-background-color: -color-bg-default; }
+.scroll-ecran, .scroll-ecran > .viewport { -fx-background-color: -color-bg-default; -fx-background: -color-bg-default; }
+.titlu-ecran { -fx-font-size: 26px; -fx-font-weight: 600; -fx-text-fill: -color-fg-default; }
+
+/* ---------- cards ---------- */
+.panou {
+    -fx-background-color: -color-bg-subtle;
+    -fx-border-color: -color-border-default;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-padding: 18;
+    -fx-spacing: 10;
+}
+.eticheta { -fx-font-weight: bold; -fx-text-fill: -color-fg-muted; -fx-font-size: 12.5px; }
+.kpi-eticheta { -fx-font-size: 12px; -fx-font-weight: 500; -fx-text-fill: -color-fg-muted; }
+.kpi-valoare { -fx-font-size: 28px; -fx-font-weight: 600; -fx-text-fill: -color-fg-default; }
+.kpi-valoare.ok { -fx-text-fill: -color-success-fg; }
+.kpi-valoare.depasit { -fx-text-fill: -color-danger-fg; }
+.formula { -fx-font-family: "Consolas", monospace; -fx-font-size: 12px; -fx-text-fill: -color-fg-muted; }
+.calcul {
+    -fx-font-family: "Consolas", monospace;
+    -fx-font-size: 12.5px;
+    -fx-background-color: -color-bg-default;
+    -fx-border-color: -color-border-muted;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-padding: 10 12;
+    -fx-line-spacing: 3;
+    -fx-max-width: infinity;
+}
+
+/* ---------- green / yellow / red ---------- */
+.pill { -fx-background-radius: 99; -fx-padding: 2 10; -fx-font-size: 11.5px; -fx-font-weight: bold; }
+.pill.ok { -fx-background-color: -color-success-subtle; -fx-text-fill: -color-success-fg; }
+.pill.atentie { -fx-background-color: -color-warning-subtle; -fx-text-fill: -color-warning-fg; }
+.pill.depasit { -fx-background-color: -color-danger-subtle; -fx-text-fill: -color-danger-fg; }
+.pill.info { -fx-background-color: -color-accent-subtle; -fx-text-fill: -color-accent-fg; }
+.pill.neutru { -fx-background-color: -color-bg-default; -fx-text-fill: -color-fg-muted; }
+
+.bara-consum { -fx-pref-height: 9; -fx-max-width: infinity; }
+.bara-consum > .track { -fx-background-color: -color-bg-default; -fx-background-radius: 99; }
+.bara-consum > .bar { -fx-background-radius: 99; -fx-background-insets: 0; -fx-padding: 4; }
+.bara-consum.ok > .bar { -fx-background-color: -color-success-emphasis; }
+.bara-consum.atentie > .bar { -fx-background-color: -color-warning-emphasis; }
+.bara-consum.depasit > .bar { -fx-background-color: -color-danger-emphasis; }
+
+/* ---------- messages ---------- */
+.mesaj { -fx-background-radius: 3; -fx-padding: 10 14; -fx-max-width: infinity; -fx-wrap-text: true; }
+.mesaj.eroare { -fx-background-color: -color-danger-subtle; -fx-text-fill: -color-danger-fg; }
+.mesaj.succes { -fx-background-color: -color-success-subtle; -fx-text-fill: -color-success-fg; }
+.mesaj.info { -fx-background-color: -color-accent-subtle; -fx-text-fill: -color-accent-fg; }
+
+/* ---------- buttons ---------- */
+.button.accent {
+    -fx-background-color: linear-gradient(to bottom, #4ade80, #16a34a);
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+}
+.button.accent:hover { -fx-background-color: linear-gradient(to bottom, #86efac, #22c55e); }
+.button.accent:pressed { -fx-background-color: linear-gradient(to bottom, #22c55e, #15803d); }
+.button.accent .ikonli-font-icon { -fx-icon-color: white; }
+
+/* ---------- charts ---------- */
+.chart { -fx-padding: 4 0 0 0; }
+.chart-plot-background { -fx-background-color: transparent; }
+.chart-vertical-grid-lines { -fx-stroke: transparent; }
+.chart-horizontal-grid-lines { -fx-stroke: -color-border-default; -fx-stroke-dash-array: 4 4; }
+.axis { -fx-tick-label-fill: -color-fg-muted; }
+.default-color0.chart-series-line { -fx-stroke: #4ade80; -fx-stroke-width: 2.5; }
+.default-color0.chart-line-symbol { -fx-background-color: #4ade80, -color-bg-subtle; }
+.default-color0.chart-series-area-line { -fx-stroke: #4ade80; -fx-stroke-width: 2.5; }
+.default-color0.chart-series-area-fill { -fx-fill: linear-gradient(to bottom, rgba(74, 222, 128, 0.45), rgba(74, 222, 128, 0.02)); }
+.default-color1.chart-series-line { -fx-stroke: #a1a1aa; }
+.default-color1.chart-line-symbol { -fx-background-color: #a1a1aa, -color-bg-subtle; }
+.grafic-prag .default-color1.chart-series-line { -fx-stroke-dash-array: 6 6; -fx-stroke-width: 1.5; }
+.bar-chart .default-color0.chart-bar { -fx-background-color: #3f3f46; -fx-background-radius: 4 4 0 0; }
+.bar-chart .default-color1.chart-bar {
+    -fx-background-color: linear-gradient(to bottom, #4ade80, rgba(22, 163, 74, 0.15));
+    -fx-background-radius: 4 4 0 0;
+}
+
+/* ---------- Dashboard (Nicoleta) ---------- */
+.rand-sala { -fx-padding: 6; -fx-background-radius: 3; -fx-cursor: hand; }
+.rand-sala:hover { -fx-background-color: -color-bg-overlay; }
+.zona-3d { -fx-background-color: -color-bg-default; -fx-background-radius: 3; }
+
+/* ---------- Start, Login, Design the classroom, AI assistant (Nicoleta) ---------- */
+.login-fundal {
+    -fx-background-image: url("../img/colegiu.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+/* ---------- Settings, Reports, Bills (Faina) ---------- */
+
+/* ---------- Eco tips, Calculators, Room page, Live, Meter readings (Sofia) ---------- */

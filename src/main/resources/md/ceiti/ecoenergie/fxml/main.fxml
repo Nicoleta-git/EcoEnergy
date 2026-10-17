@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Side menu + page area. DONE (Nicoleta).
+  Figma: the menu on the left of screens 02-11.
+  Pages are loaded inside "continut" by MainController.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="md.ceiti.ecoenergie.ui.MainController">
+    <fx:define>
+        <ToggleGroup fx:id="meniu"/>
+    </fx:define>
+    <left>
+        <VBox styleClass="sidebar" spacing="3">
+            <VBox spacing="2" styleClass="brand">
+                <fx:include source="logo.fxml"/>
+                <Label text="COLEGIUL CEITI" styleClass="brand-sub"/>
+            </VBox>
+
+            <ToggleButton fx:id="btnPanou" text="Panou principal" toggleGroup="$meniu" styleClass="nav-item" onAction="#panou">
+                <graphic><FontIcon iconLiteral="fth-grid"/></graphic>
+            </ToggleButton>
+            <ToggleButton fx:id="btnLive" text="Monitorizare live" toggleGroup="$meniu" styleClass="nav-item" onAction="#live">
+                <graphic><FontIcon iconLiteral="fth-activity"/></graphic>
+            </ToggleButton>
+            <ToggleButton fx:id="btnCitiri" text="Introducere citiri" toggleGroup="$meniu" styleClass="nav-item" onAction="#citiri">
+                <graphic><FontIcon iconLiteral="fth-edit-3"/></graphic>
+            </ToggleButton>
+            <ToggleButton fx:id="btnFacturi" text="Facturi (OCR + AI)" toggleGroup="$meniu" styleClass="nav-item" onAction="#facturi">
+                <graphic><FontIcon iconLiteral="fth-file-text"/></graphic>
+            </ToggleButton>
+            <ToggleButton fx:id="btnRapoarte" text="Rapoarte și grafice" toggleGroup="$meniu" styleClass="nav-item" onAction="#rapoarte">
+                <graphic><FontIcon iconLiteral="fth-bar-chart-2"/></graphic>
+            </ToggleButton>
+            <ToggleButton fx:id="btnCalculatoare" text="Calculatoare STEM" toggleGroup="$meniu" styleClass="nav-item" onAction="#calculatoare">
+                <graphic><FontIcon iconLiteral="fth-percent"/></graphic>
+            </ToggleButton>
+            <ToggleButton fx:id="btnSfaturi" text="Sfaturi eco" toggleGroup="$meniu" styleClass="nav-item" onAction="#sfaturi">
+                <graphic><FontIcon iconLiteral="fth-feather"/></graphic>
+            </ToggleButton>
+            <ToggleButton fx:id="btnProiectare" text="Proiectează clasa" toggleGroup="$meniu" styleClass="nav-item" onAction="#proiectare">
+                <graphic><FontIcon iconLiteral="fth-layout"/></graphic>
+            </ToggleButton>
+            <ToggleButton fx:id="btnSetari" text="Setări" toggleGroup="$meniu" styleClass="nav-item" onAction="#setari">
+                <graphic><FontIcon iconLiteral="fth-settings"/></graphic>
+            </ToggleButton>
+            <ToggleButton fx:id="btnChat" text="Asistent AI" styleClass="nav-item" onAction="#comutaChat">
+                <graphic><FontIcon iconLiteral="fth-message-circle"/></graphic>
+            </ToggleButton>
+
+            <Region VBox.vgrow="ALWAYS"/>
+            <HBox styleClass="caseta-utilizator" spacing="8" alignment="CENTER_LEFT">
+                <VBox HBox.hgrow="ALWAYS">
+                    <Label text="Administrator" styleClass="text-bold"/>
+                    <Label text="Administrator" styleClass="text-muted, text-small"/>
+                </VBox>
+                <Button styleClass="button-icon, flat" onAction="#schimbaTema">
+                    <graphic><FontIcon iconLiteral="fth-moon"/></graphic>
+                </Button>
+                <Button styleClass="button-icon, flat" onAction="#iesire">
+                    <graphic><FontIcon iconLiteral="fth-log-out"/></graphic>
+                </Button>
+            </HBox>
+        </VBox>
+    </left>
+    <center>
+        <StackPane fx:id="continut"/>
+    </center>
+    <right>
+        <fx:include fx:id="chat" source="chat.fxml"/>
+    </right>
+</BorderPane>
