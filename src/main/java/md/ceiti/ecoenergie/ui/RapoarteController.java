@@ -1,11 +1,23 @@
 package md.ceiti.ecoenergie.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableView;
+import javafx.stage.FileChooser;
+import md.ceiti.ecoenergie.model.ConsumZi;
+import md.ceiti.ecoenergie.service.ConsumService;
+
+import java.io.File;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 /*
  * Screen 07 - Rapoarte și grafice
  * Figma: page "Macheta", screen "Rapoarte și grafice"
- * Assigned to: Faina
+ * DONE (Faina)
  *
  * TODO:
  * - Top right: ComboBox "Ultimele 7 / 30 de zile" and button "Export CSV" (FileChooser, write a .csv).
@@ -33,9 +45,59 @@ import javafx.fxml.FXML;
  * Styles: use the classes listed at the top of css/app.css, no colors in the code.
  * Look at DashboardController + dashboard.fxml for an example.
  */
+
+
 public class RapoarteController {
+    @FXML private ComboBox<String> comboPerioada;
+    @FXML private LineChart<String, Number> graficZile;
+    @FXML private BarChart<String, Number> graficSali;
+    @FXML private TableView<?> tabelClasament; // Înlocuiește cu tipul corect dacă ai model
 
     @FXML
     private void initialize() {
+        comboPerioada.getItems().addAll("Ultimele 7 zile", "Ultimele 30 de zile");
+        comboPerioada.getSelectionModel().select(1);
+        comboPerioada.valueProperty().addListener((obs, vechi, nou) -> reincarcaDate());
+
+        reincarcaDate();
+    }
+
+    private void reincarcaDate() {
+        int zile = comboPerioada.getSelectionModel().getSelectedIndex() == 0 ? 7 : 30;
+        graficZile.getData().clear();
+
+        // 1. Grafic pe zile
+        XYChart.Series<String, Number> serieConsum = new XYChart.Series<>();
+        serieConsum.setName("Consum");
+        List<ConsumZi> zileList = ConsumService.ultimeleZile(zile);
+        for (ConsumZi z : zileList) {
+            serieConsum.getData().add(new XYChart.Data<>(z.data().format(DateTimeFormatter.ofPattern("dd.MM")), z.kwh()));
+        }
+        graficZile.getData().add(serieConsum);
+
+        // 2. Grafic pe săli (acum vs înainte)
+        graficSali.getData().clear();
+        XYChart.Series<String, Number> serieAcum = new XYChart.Series<>();
+        serieAcum.setName("Acum");
+        XYChart.Series<String, Number> serieInainte = new XYChart.Series<>();
+        serieInainte.setName("Înainte");
+
+        for (ConsumService.Comparatie c : ConsumService.comparatie(zile)) {
+            serieAcum.getData().add(new XYChart.Data<>(c.sala().cod(), c.acum()));
+            serieInainte.getData().add(new XYChart.Data<>(c.sala().cod(), c.inainte()));
+        }
+        graficSali.getData().addAll(serieAcum, serieInainte);
+    }
+
+    @FXML
+    private void exportCsv() {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Salvează raportul CSV");
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+        File file = fc.showSaveDialog(null);
+        if (file != null) {
+            int zile = comboPerioada.getSelectionModel().getSelectedIndex() == 0 ? 7 : 30;
+            ConsumService.exportCsv(file, zile);
+        }
     }
 }
